@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+          crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+          crossorigin="anonymous">
+    <style>
+        .btn {
+            background-color: DodgerBlue;
+            border: none;
+            color: white;
+            padding: 12px 16px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        /* Darker background on mouse-over */
+        .btn:hover {
+            background-color: RoyalBlue;
+        }
+        .exit{
+            background-color: red;
+        }
+        .exit:hover{
+            background-color: darkred;
+        }
+    </style>
+</head>
+<body>
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed"
+                    data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+                    aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span> <span
+                    class="icon-bar"></span> <span class="icon-bar"></span> <span
+                    class="icon-bar"></span>
+            </button>
+
+            <a class="navbar-brand" href="#" th:href="@{/api/admin/requests/view}">View Requests</a>
+
+            <a class="navbar-brand" href="#" th:href="@{/api/admin/agencies/view}">View Agencies</a>
+
+            <a class="navbar-brand" href="#" th:href="@{/api/admin/employees/view}">View Employees</a>
+
+            <a class="navbar-brand" href="#" th:href="@{/logout}">Logout</a>
+        </div>
+    </div>
+</nav>
+
+<br>
+<br>
+<br>
+<br>
+
+<div class = "table table-responsive table-bordered table-striped">
+    <table style="width:100%">
+        <thead>
+        <tr>
+            <th>Date</th>
+            <th>Agencys' Name</th>
+            <th>Employees' Name</th>
+            <th>Location</th>
+            <th>Status</th>
+            <th>Approve</th>
+            <th>Disapprove</th>
+        </tr>
+        </thead>
+        <tbody>
+            <tr th:if="${requests.empty}">
+                <td colspan="2"> No requests to show </td>
+            </tr>
+            <tr th:each="requests : ${requests}">
+                <td><span th:text="${requests.date}"> Date </span></td>
+                <td><span th:text="${requests.agencyName}"> Agencys' Name </span></td>
+                <td><span th:text="${requests.nameOfEmployee}"> Employees' Name </span></td>
+                <td><span th:text="${requests.agencyLocation}"> Location </span></td>
+                <td><span th:text="${requests.status}"> Status </span></td>
+                <td><a th:href="@{/api/admin/approve/{id1}/{id2} (id1=${requests.date}, id2=${requests.agencyName})}" class="btn"><i class="fa fa-calendar-check-o"></i></a></td>
+                <td><a th:href="@{/api/admin/delete/{id1}/{id2} (id1=${requests.date}, id2=${requests.agencyName})}" class="btn"><i class="fa fa-calendar-times-o"></i></a></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

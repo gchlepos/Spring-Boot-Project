@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:h="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>YourServices-Appointments</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+          crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        .btn {
+            background-color: DodgerBlue;
+            border: none;
+            color: white;
+            padding: 12px 16px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        /* Darker background on mouse-over */
+        .btn:hover {
+            background-color: RoyalBlue;
+        }
+        .exit{
+            background-color: red;
+        }
+        .exit:hover{
+            background-color: darkred;
+        }
+    </style>
+</head>
+
+<body>
+
+
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed"
+                    data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+                    aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span> <span
+                    class="icon-bar"></span> <span class="icon-bar"></span> <span
+                    class="icon-bar"></span>
+            </button>
+
+            <a class="navbar-brand" href="#" th:href="@{/api/citizen/viewAppointments}">View my appointments</a>
+
+            <a class="navbar-brand" href="#" th:href="@{/api/citizen/appointment}">Make an appointment</a>
+
+            <a class="navbar-brand" href="#" th:href="@{/logout}">Logout</a>
+        </div>
+    </div>
+</nav>
+
+<br>
+<br>
+<br>
+<br>
+
+<!--<h1 style="background-color:#1e90ff;">Hello <span th:text="${appointments[0].citizenName}"></span>! Your appointments!</h1> &lt;!&ndash;an den exei appointments den tha doylepsei, starxidia mas reiiiiiii&ndash;&gt;-->
+<div class = "table table-responsive table-bordered table-striped">
+    <table style="width:100%">
+        <thead>
+        <tr>
+            <th>Date</th>
+            <th>Time</th>
+            <th>Agency</th>
+            <th>Status</th>
+            <th>Cancel</th>
+        </tr>
+        </thead>
+        <tbody>
+            <tr th:if="${appointments.empty}">
+                <td colspan="2"> No Appointments Made </td>
+            </tr>
+            <tr th:each="appointments : ${appointments}">
+                <td><span th:text="${appointments.date}"> Date </span></td>
+                <td><span th:text="${appointments.time}"> Time </span></td>
+                <td><span th:text="${appointments.agency}"> Agency </span></td>
+                <td><span th:text="${appointments.status}"> Status </span></td>
+                <td><a th:href="@{/api/citizen/cancelAppointment/{id1}/{id2} (id1=${appointments.date}, id2=${appointments.time})}" class="btn"><i class="fa fa-calendar-times-o"></i></a></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>
