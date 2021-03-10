@@ -1,2 +1,5 @@
-# DistributedProject
-Απαιτείται η MySQL βάση δεδομένων και η δημιουργία ενός projectdata database μέσα απο τα sql αρχεία. Όλες οι αναλυτικές πληροφορίες βρίσκονται στο εγχειρίδιο χρήσης με οδηγίες για τα βήματα και την περιγραφή της εφαρμογής μας
+This is a project for my University
+
+Citizens can schedule appointments at the agencies.
+Employees controll the appointments of their agency.
+The admin of the system regulates the agencies and the employees.
